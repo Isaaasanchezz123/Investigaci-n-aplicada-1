@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comentarios</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #commentSection {
+            margin-top: 20px;
+        }
+        .comment {
+            border-bottom: 1px solid #ccc;
+            padding: 10px 0;
+        }
+        .comment p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Deja tu comentario</h1>
+    <form id="commentForm">
+        <label for="commentInput">Comentario:</label>
+        <textarea id="commentInput" rows="4" cols="50" required></textarea><br>
+        <button type="submit">Enviar</button>
+    </form>
+
+    <div id="commentSection">
+        <h2>Comentarios</h2>
+        <div id="commentsContainer"></div>
+    </div>
+
+    <script>
+        document.getElementById('commentForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const commentInput = document.getElementById('commentInput');
+            const commentText = commentInput.value.trim();
+
+            if (commentText) {
+                addComment(commentText);
+                commentInput.value = '';
+            }
+        });
+
+        function addComment(text) {
+            const commentContainer = document.createElement('div');
+            commentContainer.classList.add('comment');
+
+            const commentParagraph = document.createElement('p');
+            commentParagraph.textContent = text;
+            commentContainer.appendChild(commentParagraph);
+
+            document.getElementById('commentsContainer').appendChild(commentContainer);
+        }
+    </script>
+</body>
+</html>
